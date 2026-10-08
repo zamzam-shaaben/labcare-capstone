@@ -1,6 +1,6 @@
 # LabCare — Multi-Agent Laboratory Concierge (Capstone)
 
-**Educational demonstration only.** All prices, opening hours, patients, result summaries, and appointment slots are invented. No real laboratory is connected.
+ All prices, opening hours, patients, result summaries, and appointment slots are invented. No real laboratory is connected.
 
 ## What it does
 
@@ -87,18 +87,3 @@ docs/evaluation.md            Test plan, observations and risks
 ## Safety / limitations
 
 No real health record integration, identity verification, email/SMS delivery or real appointments. Demo access code is **not production authentication**. Storing a real patient access code in chat history is avoided by a separate password field, but this demo lacks full audit logs, encryption, rate limiting, consent, legal compliance, and secure deployment. Do not put real patient data in this prototype. No medical diagnosis or treatment recommendations are provided. Model mistakes in Arabic intent recognition remain possible. Prompts embedded in user input are treated as untrusted.
-
-## Publish to GitHub
-
-Create an empty **private or public** repository on github.com, then from this project folder:
-
-```bash
-git init
-git add .
-git commit -m "Initial LabCare multi-agent capstone"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/labcare-capstone.git
-git push -u origin main
-```
-
-Replace `YOUR_USERNAME`. Verify `.gitignore` excludes `.env`, SQLite data and venv. Add your real repo URL to the report before submitting. We cannot publish to your GitHub account from this archive.
