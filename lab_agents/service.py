@@ -11,9 +11,14 @@ def prices(query=''):
     with connect() as con:
         rows = [dict(r) for r in con.execute('SELECT * FROM tests ORDER BY code')]
     q = query.strip().casefold()
+    note = 'Illustrative prices only; not a real laboratory quote.'
     if q:
-        rows = [r for r in rows if q in (' '.join(str(v) for v in r.values())).casefold()]
-    return {'currency':'USD','items':rows,'note':'Illustrative prices only; not a real laboratory quote.'}
+        text = {r['code']:(' '.join(str(v) for v in r.values())).casefold() for r in rows}
+        # Whole phrase first, then any word of it (a model may pass "TSH price" rather than "TSH").
+        hits = [r for r in rows if q in text[r['code']]] or [r for r in rows if any(w in text[r['code']] for w in q.split() if len(w)>2)]
+        if hits: rows = hits
+        else: note = 'No test matched the query; the full catalog is returned. ' + note
+    return {'currency':'USD','items':rows,'note':note}
 
 def hours(): return {'hours':HOURS,'note':'Fictional schedule; demonstration only.'}
 

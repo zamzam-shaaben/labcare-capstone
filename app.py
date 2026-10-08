@@ -19,9 +19,10 @@ for who,msg in st.session_state.history:
     with st.chat_message(who):st.write(msg)
 q=st.chat_input('Ask about prices, hours, appointments, or results / اسأل عن الفحوصات')
 if q:
+    past=list(st.session_state.history)  # earlier turns = the agents' conversation memory
     st.session_state.history.append(('user',q))
     with st.chat_message('user'):st.write(q)
-    try:reply=asyncio.run(bot.chat(q))
+    try:reply=asyncio.run(bot.chat(q,past))
     except Exception as ex:reply=f'Cannot reach MCP server: {type(ex).__name__}: {ex}'
     st.session_state.history.append(('assistant',reply))
     with st.chat_message('assistant'):st.write(reply)
