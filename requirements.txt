@@ -1,0 +1,7 @@
+streamlit>=1.38,<2
+langgraph>=0.2,<2
+langchain-ollama>=0.2,<2
+langchain-core>=0.3,<2
+mcp>=1.10,<2
+pydantic>=2.7,<3
+pytest>=8,<10
